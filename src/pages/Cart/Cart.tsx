@@ -1,7 +1,9 @@
+import ShoppingCart from "@/widgets/ShoppingCart/ShoppingCart";
+
 function Cart() {
   return (
     <>
-      <div>1</div>
+      <ShoppingCart />
     </>
   );
 }

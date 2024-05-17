@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
-import { GetShoppingCartHeaderResponse } from "../api/GetShoppingCartHeader";
 
-export const useLoadImage = (
-  data: GetShoppingCartHeaderResponse | undefined
-) => {
+export const useLoadImage = (img: string | undefined) => {
   const [image, setImage] = useState<HTMLImageElement | null>(null);
 
   useEffect(() => {
-    if (data) {
+    if (img) {
       const imageElement = new Image();
-      imageElement.src = `data:image/jpeg;base64,${data?.LogoImg}`;
+      imageElement.src = `data:image/jpeg;base64,${img}`;
 
       imageElement.onload = () => {
         setImage(imageElement);
       };
     }
-  }, [data]);
+  }, [img]);
 
   return image;
 };

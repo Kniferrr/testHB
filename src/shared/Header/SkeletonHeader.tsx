@@ -7,12 +7,14 @@ import styles from "./Header.module.scss";
 const SkeletonHeader = ({
   logoImg = "",
   userName = "testHB",
+  TotalProducts = 0,
 }: {
   logoImg?: string;
   userName?: string;
+  TotalProducts?: number;
 }) => {
   return (
-    <AppBar>
+    <AppBar position="static">
       <Toolbar className={styles.header_toolbar}>
         <Link to="/" className={styles.header_link}>
           <img src={logoImg} alt="Logo" className={styles.header_logo} />
@@ -32,7 +34,7 @@ const SkeletonHeader = ({
         </Link>
         <DropdownLink />
         <Link to="/cart" className={styles.header_link}>
-          <CartLink />
+          <CartLink TotalProducts={TotalProducts} />
         </Link>
       </Toolbar>
     </AppBar>

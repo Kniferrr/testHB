@@ -11,5 +11,6 @@ export const GetShoppingCartHeader = async () => {
   const response: AxiosResponse<GetShoppingCartHeaderResponse> = await api.get(
     "api/ShoppingCart/header"
   );
+  localStorage.setItem("UsedGuid", response.data.UsedGuid);
   return response.data;
 };
