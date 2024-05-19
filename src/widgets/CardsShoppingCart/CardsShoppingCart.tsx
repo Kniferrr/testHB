@@ -1,10 +1,6 @@
 import ProductTable from "@/entities/ProductCard/ProductTable";
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { GetShoppingCartProducts } from "../api/GetShoppingCartProducts";
-import { DeleteShoppingCartProduct } from "../api/DeleteShoppingCartProduct";
-import useCachedGuid from "@/shared/hooks/useCachedGuid";
-import { queryClient } from "@/main";
-import { PostShoppingCartChangequantity } from "../api/PostShoppingCartChangequantity";
 
 function CardsShoppingCart() {
   const { data, isLoading } = useQuery(
@@ -18,37 +14,6 @@ function CardsShoppingCart() {
     }
   );
 
-  const UserGuid = useCachedGuid();
-
-  const DeleteShoppingCartProductMutation = useMutation(
-    (ProductId: number) => DeleteShoppingCartProduct({ ProductId, UserGuid }),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("CardsShoppingCart");
-        queryClient.invalidateQueries("GetShoppingCartBaskedsummary");
-      },
-    }
-  );
-
-  const QuantityChangeMutation = useMutation(
-    ({ ProductId, count }: { ProductId: number; count: number }) =>
-      PostShoppingCartChangequantity(ProductId, UserGuid, count),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries("CardsShoppingCart");
-        queryClient.invalidateQueries("GetShoppingCartBaskedsummary");
-      },
-    }
-  );
-
-  const onRemoveFromCartItem = (ProductId: number) => {
-    DeleteShoppingCartProductMutation.mutate(ProductId);
-  };
-
-  const handleQuantityChange = (ProductId: number, count: number) => {
-    QuantityChangeMutation.mutate({ ProductId, count });
-  };
-
   if (isLoading || !data) {
     return (
       <ProductTable
@@ -59,8 +24,6 @@ function CardsShoppingCart() {
           image: "",
           quantity: 1,
         }}
-        onRemoveFromCart={() => console.log("onRemoveFromCart")}
-        handleQuantityChange={() => console.log()}
       />
     );
   }
@@ -77,8 +40,6 @@ function CardsShoppingCart() {
             image: item.Images[0].Image,
             quantity: item.Quantity,
           }}
-          onRemoveFromCart={onRemoveFromCartItem}
-          handleQuantityChange={handleQuantityChange}
         />
       ))}
     </>

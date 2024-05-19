@@ -1,7 +1,7 @@
 import { queryClient } from "@/main";
 import { PostAdminCreate } from "./api/PostAdminCreate";
 import { useMutation } from "react-query";
-import FillCartButton from "@/entities/CartFillButton";
+import FillCartButton from "@/entities/CartFillButton/CartFillButton";
 
 function CartFill() {
   const mutation = useMutation(() => PostAdminCreate(), {

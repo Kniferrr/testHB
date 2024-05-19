@@ -1,7 +1,7 @@
 import { Table, TableContainer, Paper } from "@mui/material";
 import CardsShoppingCart from "../CardsShoppingCart/CardsShoppingCart";
 import ShoppingCartHead from "@/entities/ShoppingCartHead/ShoppingCartHead";
-import CartSummaryWindget from "../CartSummaryWindget/CartSummaryWindget";
+import CartSummaryWidget from "../CartSummaryCartSummaryWidget/CartSummaryCartSummaryWidget";
 
 function ShoppingCart() {
   return (
@@ -11,7 +11,7 @@ function ShoppingCart() {
           <ShoppingCartHead />
           <CardsShoppingCart />
         </Table>
-        <CartSummaryWindget />
+        <CartSummaryWidget />
       </TableContainer>
     </>
   );
