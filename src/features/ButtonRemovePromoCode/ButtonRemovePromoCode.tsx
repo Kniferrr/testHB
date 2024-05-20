@@ -18,13 +18,8 @@ const ButtonRemovePromoCode = () => {
   };
 
   return (
-    <Button
-      onClick={handleRemovePromoCode}
-      variant="outlined"
-      color="secondary"
-      fullWidth
-    >
-      Очистить корзину
+    <Button onClick={handleRemovePromoCode} variant="contained" color="primary">
+      Удалить
     </Button>
   );
 };

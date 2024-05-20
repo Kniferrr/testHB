@@ -3,6 +3,8 @@ import { TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { useLoadImage } from "@/shared/hooks/useLoadImage";
 import ButtonRemoveFromCart from "@/features/ButtonRemoveFromCart/ButtonRemoveFromCart";
 import QuantityProductField from "@/features/QuantityProductField/QuantityProductField";
+import ButtonIncrementFromCart from "@/features/ButtonIncrementFromCart/ButtonIncrementFromCart";
+import ButtonDecrementFromCart from "@/features/ButtonDecrementFromCart/ButtonDecrementFromCart";
 
 export interface Product {
   id: number;
@@ -16,7 +18,7 @@ interface ProductCardProps {
   product: Product;
 }
 
-const ProductTable: React.FC<ProductCardProps> = ({ product }) => {
+const ProductTableComponent: React.FC<ProductCardProps> = ({ product }) => {
   const [quantity, setQuantity] = useState<number>(1);
 
   const image = useLoadImage(product.image);
@@ -37,15 +39,29 @@ const ProductTable: React.FC<ProductCardProps> = ({ product }) => {
           <QuantityProductField
             quantity={quantity}
             setQuantity={setQuantity}
-            ProductId={product.id}
+            product={product}
           />
         </TableCell>
         <TableCell>
+          <ButtonIncrementFromCart product={product} />
+          <ButtonDecrementFromCart product={product} />
           <ButtonRemoveFromCart product={product} />
         </TableCell>
       </TableRow>
     </TableBody>
   );
 };
+
+const areEqual = (prevProps: ProductCardProps, nextProps: ProductCardProps) => {
+  return (
+    prevProps.product.id === nextProps.product.id &&
+    prevProps.product.name === nextProps.product.name &&
+    prevProps.product.price === nextProps.product.price &&
+    prevProps.product.image === nextProps.product.image &&
+    prevProps.product.quantity === nextProps.product.quantity
+  );
+};
+
+const ProductTable = React.memo(ProductTableComponent, areEqual);
 
 export default ProductTable;

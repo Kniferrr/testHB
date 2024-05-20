@@ -17,6 +17,7 @@
     "@mui/material": "^5.15.17",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "axios": "^1.6.8",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
@@ -24,6 +25,7 @@
     "styled-components": "^6.1.11"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.4",
     "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
